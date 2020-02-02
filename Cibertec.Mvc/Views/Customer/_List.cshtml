@@ -1,0 +1,168 @@
+﻿@model IEnumerable<Cibertec.Models.Customers>
+@Html.Partial("Header")
+<main id="js-page-content" role="main" class="page-content">
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:void(0);">Proyect WebApp</a></li>
+        <li class="breadcrumb-item">Mantenimiento</li>
+        <li class="breadcrumb-item active">Clientes</li>
+        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+    </ol>
+    <div class="subheader">
+        <h1 class="subheader-title">
+            <i class='subheader-icon fal fa-table'></i> Mantenimiento: <span class='fw-300'>Clientes</span>
+        </h1>
+    </div>
+    @Messages.AlertMessages()
+    <div class="row">
+        <div class="col-xl-12 ">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Consulta <span class="fw-300"><i>Clientes</i></span>
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="panel-tag">
+                            <a href="#" onclick="cibertec.getModal('@Url.Action("Create")'); return false;"
+                               data-toggle="modal" data-target="#modal-container" class="btn btn-success btn-sm">
+                                <span class="glyphicon glyphicon-plus"> New </span>
+                            </a>
+                        </div>
+                        <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                            <thead class="bg-highlight">
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.CustomerID)</th>
+                                    <th> @Html.DisplayNameFor(model => model.CompanyName)</th>
+                                    <th> @Html.DisplayNameFor(model => model.ContactName)</th>
+                                    <th> @Html.DisplayNameFor(model => model.City)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Country)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CompanyName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ContactName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.City)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Country)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Phone)
+                                        </td>
+                                        <td>
+                                            <a href="#" onclick="cibertec.getModal('@Url.Action("Update", new { id = item.CustomerID })'); return false;"
+                                               data-toggle="modal" data-target="#modal-container" class="btn btn-warning btn-sm">
+                                                <span class="glyphicon glyphicon-edit"> Edit </span>
+                                            </a>
+                                            <a href="#" onclick="cibertec.getModal('@Url.Action("Delete", new { id = item.CustomerID })'); return false;"
+                                               data-toggle="modal" data-target="#modal-container" class="btn btn-danger btn-sm">
+                                                <span class="glyphicon glyphicon-trash"> Delete </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+   
+    $(document).ready(function () {
+        
+            $('#js-page-content').smartPanel();
+            $('#dt-basic-example thead tr').clone(true).appendTo('#dt-basic-example thead');
+            $('#dt-basic-example thead tr:eq(1) th').each(function (i) {
+                var title = $(this).text();
+                $(this).html('<input type="text" class="form-control form-control-sm" placeholder="Search '+title+'" />');
+
+                $('input', this).on('keyup change', function () {
+                    if (table.column(i).search() !== this.value) {
+                        table
+                            .column(i)
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+            var table = $('#dt-basic-example').DataTable(
+                {
+                    //responsive: true,
+                    orderCellsTop: true,
+                    fixedHeader: true,
+                    responsive: true,
+                    lengthChange: false,
+                    dom:
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+        
+
+        $('.js-thead-colors a').on('click', function () {
+            var theadColor = $(this).attr("data-bg");
+            console.log(theadColor);
+            $('#dt-basic-example thead').removeClassPrefix('bg-').addClass(theadColor);
+        });
+
+        $('.js-tbody-colors a').on('click', function () {
+            var theadColor = $(this).attr("data-bg");
+            console.log(theadColor);
+            $('#dt-basic-example').removeClassPrefix('bg-').addClass(theadColor);
+        });
+       
+       
+    });
+
+</script>

@@ -1,0 +1,4 @@
+﻿@if (Request.IsAuthenticated)
+{
+    @Html.ActionLink(User.Identity.Name, "Index", "Home", new { @class = "color-white" })
+}

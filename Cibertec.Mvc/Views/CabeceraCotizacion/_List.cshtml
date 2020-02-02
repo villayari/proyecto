@@ -1,0 +1,262 @@
+﻿@model IEnumerable<Cibertec.Models.CabeceraCotizacion>
+
+@Html.Partial("Header")
+<main id="js-page-content" role="main" class="page-content">
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:void(0);">Proyect WebApp</a></li>
+        <li class="breadcrumb-item">Report</li>
+        <li class="breadcrumb-item active">Ventas</li>
+        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+    </ol>
+    <div class="subheader">
+        <h1 class="subheader-title">
+            <i class='subheader-icon fal fa-table'></i> Report: <span class='fw-300'>Ventas</span>
+        </h1>
+        <div class="subheader-block hidden-lg-down d-lg-flex align-items-center">
+            <div class="d-inline-flex flex-column justify-content-center mr-3">
+                <span class="fw-300 fs-xs d-block opacity-50">
+                    <small>Cotizaciones</small>
+                </span>
+                <span class="fw-500 fs-xl d-block color-info-500" id="total_peity">
+                </span>
+            </div>
+            <span class="sparklines" sparkType="bar" sparkBarColor="#0d8aee" sparkHeight="32px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-xl-3">
+            <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500" id="counts">
+
+                        <small class="m-0 l-h-n">Total Cotizaciones</small>
+                    </h3>
+                </div>
+                <i class="fal fa-shopping-cart position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500" id="total">
+                        <small class="m-0 l-h-n">Total Venta</small>
+                    </h3>
+                </div>
+                <i class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500" id="descuento">
+                        <small class="m-0 l-h-n">Total Descuento</small>
+                    </h3>
+                </div>
+                <i class="fal fa-lightbulb position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500" id="facturado">
+                        <small class="m-0 l-h-n">Total Venta Facturado</small>
+                    </h3>
+                </div>
+                <i class="fal fa-globe position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n4" style="font-size: 6rem;"></i>
+            </div>
+        </div>
+    </div>
+    @Messages.AlertMessages()
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="row">
+                <div class="col-xl-6">
+                    <div id="panel-6" class="panel">
+                        <div class="panel-hdr">
+                            <h2>
+                                Bar <span class="fw-300"><i>Chart</i></span>
+                            </h2>
+                        </div>
+                        <div class="panel-container show">
+                            <div class="panel-content">
+                                <div class="panel-tag">
+                                    Total de venta por Asesor
+                                </div>
+                                <div id="barChart">
+                                    <canvas style="width:100%; height:300px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div id="panel-2" class="panel">
+                        <div class="panel-hdr">
+                            <h2>
+                                Doughnut <span class="fw-300"><i>Chart</i></span>
+                            </h2>
+                        </div>
+                        <div class="panel-container show">
+                            <div class="panel-content">
+                                <div class="panel-tag">
+                                    Total de venta por Mes
+                                </div>
+                                <div id="doughnutChart">
+                                    <canvas style="width:100%; height:300px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12 ">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Consulta <span class="fw-300"><i>Ordenes</i></span>
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="panel-tag">
+                            <a href="#" onclick="cibertec.getModal('@Url.Action("Create")'); return false;"
+                               data-toggle="modal" data-target="#modal-container" class="btn btn-success btn-sm">
+                                <span class="glyphicon glyphicon-plus"> New </span>
+                            </a>
+                        </div>
+                        <table data-order='[[ 1, "desc" ]]' id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Cotizacion)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Evento)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Asesor)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Monto)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Descuento)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Fecha)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a href="#" onclick="cibertec.getModal('@Url.Action("Detail", new { id = item.Cotizacion })'); return false;"
+                                               data-toggle="modal" data-target="#modal-container" class="btn btn-default btn-sm">
+                                                <span class="fa fa-bars"> </span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Cotizacion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Evento)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Asesor)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Monto)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Descuento)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Fecha)
+                                        </td>
+                                        <td>
+                                            <a href="#" onclick="cibertec.getModal('@Url.Action("Update", new { id = item.Cotizacion })'); return false;"
+                                               data-toggle="modal" data-target="#modal-container" class="btn btn-warning btn-sm">
+                                                <span class="fa fa-edit"> Edit </span>
+                                            </a>
+                                            <a href="#" onclick="cibertec.getModal('@Url.Action("Delete", new { id = item.Cotizacion })'); return false;"
+                                               data-toggle="modal" data-target="#modal-container" class="btn btn-danger btn-sm">
+                                                <span class="fa fa-trash"> Delete </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+
+    $(document).ready(function () {
+
+        $('#js-page-content').smartPanel();
+        $('#dt-basic-example').dataTable(
+            {
+                responsive: true,
+                lengthChange: false,
+                dom:
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
+            });
+
+        $('.js-thead-colors a').on('click', function () {
+            var theadColor = $(this).attr("data-bg");
+            console.log(theadColor);
+            $('#dt-basic-example thead').removeClassPrefix('bg-').addClass(theadColor);
+        });
+
+        $('.js-tbody-colors a').on('click', function () {
+            var theadColor = $(this).attr("data-bg");
+            console.log(theadColor);
+            $('#dt-basic-example').removeClassPrefix('bg-').addClass(theadColor);
+        });
+
+    });
+
+</script>

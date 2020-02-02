@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Cibertec.Models.DetalleCotizacion>
+
+<div class="col-md-12">
+    <table id="dt-detail" class="table table-bordered table-hover table-striped w-100">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Item)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IDCodigo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cantidad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MUnit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IGV)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MTotal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MBase)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDCodigo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MUnit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IGV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MBase)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+    <script>
+
+        $(document).ready(function () {
+
+            $('#js-page-content').smartPanel();
+            $('#dt-detail').dataTable(
+                {
+                    responsive: true,
+                    lengthChange: false,
+                    dom:
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'PDF',
+                            titleAttr: 'Generate PDF',
+                            className: 'btn-outline-danger btn-sm mr-1'
+                        },
+                        {
+                            extend: 'excelHtml5',
+                            text: 'Excel',
+                            titleAttr: 'Generate Excel',
+                            className: 'btn-outline-success btn-sm mr-1'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'copyHtml5',
+                            text: 'Copy',
+                            titleAttr: 'Copy to clipboard',
+                            className: 'btn-outline-primary btn-sm mr-1'
+                        },
+                        {
+                            extend: 'print',
+                            text: 'Print',
+                            titleAttr: 'Print Table',
+                            className: 'btn-outline-primary btn-sm'
+                        }
+                    ]
+                });
+
+            $('.js-thead-colors a').on('click', function () {
+                var theadColor = $(this).attr("data-bg");
+                console.log(theadColor);
+                $('#dt-basic-example thead').removeClassPrefix('bg-').addClass(theadColor);
+            });
+
+            $('.js-tbody-colors a').on('click', function () {
+                var theadColor = $(this).attr("data-bg");
+                console.log(theadColor);
+                $('#dt-basic-example').removeClassPrefix('bg-').addClass(theadColor);
+            });
+
+        });
+
+    </script>

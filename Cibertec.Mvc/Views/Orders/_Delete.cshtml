@@ -1,0 +1,81 @@
+﻿@model Cibertec.Models.Orders
+
+<h3>Esta seguro que quiere eliminar este registro?</h3>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipVia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipVia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Freight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Freight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipName)
+        </dd>
+
+    </dl>
+
+    @using (Ajax.BeginForm("Delete", new { Controller = "Orders" },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "modal-body",
+                        OnSuccess = "orders.success('delete');"
+                        //OnFailure = ""
+                    },
+                    htmlAttributes: new { id = "deleteForm" }
+                  )
+    )
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions">
+        <div class="col-md-offset-2 col-md-12">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    }
+<script type="text/javascript">
+        $(function () {
+            $.validator.unobtrusive.parse("#deleteForm");
+        });
+</script>

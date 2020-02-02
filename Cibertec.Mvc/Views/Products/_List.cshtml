@@ -1,0 +1,204 @@
+﻿@model IEnumerable<Cibertec.Models.Products>
+@Html.Partial("Header")
+
+<main id="js-page-content" role="main" class="page-content">
+    <ol class="breadcrumb page-breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:void(0);">Proyect WebApp</a></li>
+        <li class="breadcrumb-item">Mantenimiento</li>
+        <li class="breadcrumb-item active">Productos</li>
+        <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+    </ol>
+    <div class="subheader">
+        <h1 class="subheader-title">
+            <i class='subheader-icon fal fa-table'></i> Mantenimiento: <span class='fw-300'>Productos</span>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-xl-3">
+            <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500" id="total_activos">
+
+                        <small class="m-0 l-h-n">Productos Activos</small>
+                    </h3>
+                </div>
+                <i class="fal fa-cart-plus position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500" id="total_inactivos">
+                        <small class="m-0 l-h-n">Productos Inactivos</small>
+                    </h3>
+                </div>
+                <i class="fal fa-cart-arrow-down position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="p-3 bg-success-200 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500" id="p_total_activos">
+                        <small class="m-0 l-h-n">Porcentaje Activo</small>
+                    </h3>
+                </div>
+                <i class="fas fa-arrow-alt-circle-up position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="p-3 bg-info-200 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500" id="p_total_inactivos">
+                        <small class="m-0 l-h-n">Porcentaje Inactivo</small>
+                    </h3>
+                </div>
+                <i class="fas fa-arrow-alt-circle-down position-absolute pos-right pos-bottom opacity-15 mb-n5 mr-n6" style="font-size: 8rem;"></i>
+            </div>
+        </div>
+    </div>
+    @Messages.AlertMessages()
+    <div class="row">
+        <div class="col-xl-12 ">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Consulta <span class="fw-300"><i>Productos</i></span>
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="panel-tag">
+                            <a href="#" onclick="cibertec.getModal('@Url.Action("Create")'); return false;"
+                               data-toggle="modal" data-target="#modal-container" class="btn btn-success btn-sm">
+                                <span class="glyphicon glyphicon-plus"> New </span>
+                            </a>
+                        </div>
+                        <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ProductID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ProductName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SupplierId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CategoryID)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.UnitPrice)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Discontinued)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProductName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SupplierId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CategoryID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Discontinued)
+                                        </td>
+                                        <td>
+                                            <a href="#" onclick="cibertec.getModal('@Url.Action("Update", new { id = item.ProductID })'); return false;"
+                                               data-toggle="modal" data-target="#modal-container" class="btn btn-warning btn-sm">
+                                                <span class="glyphicon glyphicon-edit"> Edit </span>
+                                            </a>
+                                            <a href="#" onclick="cibertec.getModal('@Url.Action("Delete", new { id = item.ProductID })'); return false;"
+                                               data-toggle="modal" data-target="#modal-container" class="btn btn-danger btn-sm">
+                                                <span class="glyphicon glyphicon-trash"> Delete </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    $(document).ready(function () {
+        $('#js-page-content').smartPanel();
+        $('#dt-basic-example').dataTable(
+            {
+                responsive: true,
+                lengthChange: false,
+                dom:
+                    "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'lB>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                buttons: [
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'PDF',
+                        titleAttr: 'Generate PDF',
+                        className: 'btn-outline-danger btn-sm mr-1'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        titleAttr: 'Generate Excel',
+                        className: 'btn-outline-success btn-sm mr-1'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: 'CSV',
+                        titleAttr: 'Generate CSV',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'copyHtml5',
+                        text: 'Copy',
+                        titleAttr: 'Copy to clipboard',
+                        className: 'btn-outline-primary btn-sm mr-1'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        titleAttr: 'Print Table',
+                        className: 'btn-outline-primary btn-sm'
+                    }
+                ]
+            });
+
+        $('.js-thead-colors a').on('click', function () {
+            var theadColor = $(this).attr("data-bg");
+            console.log(theadColor);
+            $('#dt-basic-example thead').removeClassPrefix('bg-').addClass(theadColor);
+        });
+
+        $('.js-tbody-colors a').on('click', function () {
+            var theadColor = $(this).attr("data-bg");
+            console.log(theadColor);
+            $('#dt-basic-example').removeClassPrefix('bg-').addClass(theadColor);
+        });
+
+    });
+
+</script>

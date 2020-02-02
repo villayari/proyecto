@@ -1,0 +1,38 @@
+D:\PRY\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\Cibertec.Models.dll
+D:\PRY\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\Cibertec.Models.pdb
+D:\PRY\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csprojAssemblyReference.cache
+D:\PRY\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csproj.CoreCompileInputs.cache
+D:\PRY\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.dll
+D:\PRY\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.pdb
+C:\Users\EXTENSION\Desktop\Proyectos\Cap6\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\Cibertec.Models.dll
+C:\Users\EXTENSION\Desktop\Proyectos\Cap6\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\Cibertec.Models.pdb
+C:\Users\EXTENSION\Desktop\Proyectos\Cap6\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\EXTENSION\Desktop\Proyectos\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csprojAssemblyReference.cache
+C:\Users\EXTENSION\Desktop\Proyectos\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csproj.CoreCompileInputs.cache
+C:\Users\EXTENSION\Desktop\Proyectos\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csproj.CopyComplete
+C:\Users\EXTENSION\Desktop\Proyectos\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.dll
+C:\Users\EXTENSION\Desktop\Proyectos\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.pdb
+D:\Cap6\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\Cibertec.Models.dll
+D:\Cap6\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\Cibertec.Models.pdb
+D:\Cap6\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csprojAssemblyReference.cache
+D:\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csproj.CoreCompileInputs.cache
+D:\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csproj.CopyComplete
+D:\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.dll
+D:\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.pdb
+D:\VILLA-YARI\Documents\Clase 9\Cap6\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\Cibertec.Models.dll
+D:\VILLA-YARI\Documents\Clase 9\Cap6\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\Cibertec.Models.pdb
+D:\VILLA-YARI\Documents\Clase 9\Cap6\MiPrimeraWeb-master\Cibertec.Models\bin\Debug\System.ComponentModel.Annotations.dll
+D:\VILLA-YARI\Documents\Clase 9\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csprojAssemblyReference.cache
+D:\VILLA-YARI\Documents\Clase 9\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csproj.CoreCompileInputs.cache
+D:\VILLA-YARI\Documents\Clase 9\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.csproj.CopyComplete
+D:\VILLA-YARI\Documents\Clase 9\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.dll
+D:\VILLA-YARI\Documents\Clase 9\Cap6\MiPrimeraWeb-master\Cibertec.Models\obj\Debug\Cibertec.Models.pdb
+D:\VILLA-YARI\Documents\Clase 9\Cap6\proyecto\Cibertec.Models\bin\Debug\Cibertec.Models.dll
+D:\VILLA-YARI\Documents\Clase 9\Cap6\proyecto\Cibertec.Models\bin\Debug\Cibertec.Models.pdb
+D:\VILLA-YARI\Documents\Clase 9\Cap6\proyecto\Cibertec.Models\bin\Debug\System.ComponentModel.Annotations.dll
+D:\VILLA-YARI\Documents\Clase 9\Cap6\proyecto\Cibertec.Models\obj\Debug\Cibertec.Models.csprojAssemblyReference.cache
+D:\VILLA-YARI\Documents\Clase 9\Cap6\proyecto\Cibertec.Models\obj\Debug\Cibertec.Models.csproj.CoreCompileInputs.cache
+D:\VILLA-YARI\Documents\Clase 9\Cap6\proyecto\Cibertec.Models\obj\Debug\Cibertec.Models.csproj.CopyComplete
+D:\VILLA-YARI\Documents\Clase 9\Cap6\proyecto\Cibertec.Models\obj\Debug\Cibertec.Models.dll
+D:\VILLA-YARI\Documents\Clase 9\Cap6\proyecto\Cibertec.Models\obj\Debug\Cibertec.Models.pdb

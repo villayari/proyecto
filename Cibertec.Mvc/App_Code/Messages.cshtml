@@ -1,0 +1,21 @@
+﻿@helper Message(string id, string action, string type, string message)
+{
+<div id="@id" class="hidden">
+    <div class="alert alert-@type alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+        <strong>@action!</strong> @message
+    </div>
+</div>
+
+}
+
+
+@helper AlertMessages()
+{
+                    /**/
+    @Message("successMessage", "New", "success", "El registro fue creado correctamente.")
+    @Message("deleteMessage", "Delete", "danger", "El registro fue eliminado correctamente.")
+    @Message("editMessage", "Edit", "warning", "El registro fue actualizado correctamente.")
+}
